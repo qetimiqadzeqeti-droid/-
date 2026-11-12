@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ქართული ენისა და ლიტერატურის ადაპტირებული ტესტი (ილუსტრირებული)</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=FiraGO:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'FiraGO', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; color: #111 !important; padding: 0 !important; }
+      .test-card { border: 1px solid #cbd5e1 !important; box-shadow: none !important; break-inside: avoid; margin-bottom: 20px !important; }
+      img { max-height: 280px !important; object-fit: contain !important; }
+      .page-break { page-break-before: always; }
+    }
+    .img-zoom {
+      transition: transform 0.25s ease;
+    }
+    .img-zoom:hover {
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+<body class="bg-slate-100/80 text-slate-800 antialiased p-3 sm:p-6 md:p-8">
+
+  <!-- TOP BAR & CONTROLS -->
+  <header class="max-w-4xl mx-auto mb-6 bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-100 pb-5">
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 tracking-wide">
+            ქართული როგორც მეორე ენა (GSL)
+          </span>
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">
+            ადაპტირებული და მკაფიოდ დასურათებული
+          </span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">ტესტი ქართულ ენასა და ლიტერატურაში</h1>
+        <p class="text-sm text-slate-600 mt-1">სამიზნე ჯგუფი: V - VII კლასი (A2-B1 დონე) • გათვლილია ეთნიკური უმცირესობის მოსწავლეებზე</p>
+      </div>
+
+      <div class="no-print flex flex-wrap gap-2">
+        <button onclick="window.print()" class="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-semibold flex items-center gap-2 shadow-sm transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          ბეჭდვა (A4 ფორმატი)
+        </button>
+        <button onclick="toggleAnswers()" id="ansBtn" class="px-4 py-2.5 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-xl text-sm font-semibold transition">
+          პასუხების ჩვენება
+        </button>
+      </div>
+    </div>
+
+    <!-- Student Header Details -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-4 pt-1 text-sm">
+      <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+        <span class="text-slate-500 block text-xs font-medium">მოსწავლის სახელი, გვარი:</span>
+        <input type="text" placeholder="ჩაწერეთ სახელი..." class="w-full bg-transparent font-semibold text-slate-900 focus:outline-none border-b border-dashed border-slate-400 mt-1">
+      </div>
+      <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+        <span class="text-slate-500 block text-xs font-medium">კლასი და სექტორი / სკოლა:</span>
+        <input type="text" placeholder="მაგ. VI კლასი, სექტორი..." class="w-full bg-transparent font-semibold text-slate-900 focus:outline-none border-b border-dashed border-slate-400 mt-1">
+      </div>
+      <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+        <span class="text-slate-500 block text-xs font-medium">თარიღი:</span>
+        <input type="text" value="2026 წლის ნოემბერი" class="w-full bg-transparent font-semibold text-slate-900 focus:outline-none border-b border-dashed border-slate-400 mt-1">
+      </div>
+    </div>
+
+    <!-- Friendly Encouragement Box (Psychological Scaffolding) -->
+    <div class="mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl flex items-center gap-3">
+      <div class="text-3xl flex-shrink-0">🌟</div>
+      <p class="text-xs sm:text-sm text-blue-950 font-medium leading-relaxed">
+        <strong>გამარჯობა!</strong> ნუ იღელვებ ტესტის გამო. დააკვირდი ფერად ნახატებს — ისინი დაგეხმარება კითხვების სწორად გაგებაში. თუ რომელიმე სიტყვა არ იცი, ნახატი და მინი-ლექსიკონი გიკარნახებს. შენ აუცილებლად გამოგივა!
+      </p>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto space-y-7">
+
+    <!-- SECTION 1: ლექსიკა და ვიზუალური შესაბამისობა -->
+    <section class="test-card bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-5">
+        <span class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm shadow-sm">1</span>
+        <div>
+          <h2 class="font-bold text-slate-900 text-lg sm:text-xl">ნაწილი I: ლექსიკა და ფერადი ნახატები (4 ქულა)</h2>
+          <p class="text-xs sm:text-sm text-slate-500">დააკვირდი თითოეულ მკაფიო ნახატს და შეუსაბამე სწორი სიტყვა ან ფრაზა.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        
+        <!-- Card A: ოქროსფერი შემოდგომა -->
+        <div class="border-2 border-slate-200 hover:border-amber-400 rounded-2xl p-3.5 text-center bg-slate-50/70 hover:bg-amber-50/30 transition flex flex-col items-center">
+          <div class="w-full h-36 rounded-xl overflow-hidden bg-gradient-to-b from-amber-100 to-orange-200 flex items-center justify-center border border-amber-300 shadow-inner relative">
+            <svg class="w-full h-full p-2" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Sky & gentle sun -->
+              <circle cx="130" cy="25" r="18" fill="#FDE047" opacity="0.8"/>
+              <!-- Autumn Tree Trunk -->
+              <path d="M80 130V75C80 65 72 55 60 50" stroke="#78350F" stroke-width="8" stroke-linecap="round"/>
+              <path d="M80 75C85 65 95 60 105 52" stroke="#78350F" stroke-width="6" stroke-linecap="round"/>
+              <!-- Golden Autumn Crown -->
+              <circle cx="55" cy="45" r="24" fill="#F59E0B"/>
+              <circle cx="95" cy="40" r="26" fill="#EA580C"/>
+              <circle cx="75" cy="30" r="28" fill="#FBBF24"/>
+              <circle cx="78" cy="55" r="22" fill="#D97706"/>
+              <!-- Falling Golden Leaves -->
+              <path d="M35 85C30 80 32 72 40 76C42 82 38 88 35 85Z" fill="#EA580C"/>
+              <path d="M120 75C126 70 128 78 124 82C118 84 117 78 120 75Z" fill="#F59E0B"/>
+              <path d="M60 105C55 100 58 95 65 98C66 103 62 108 60 105Z" fill="#FBBF24"/>
+              <path d="M100 108C105 104 108 110 104 114C99 116 98 111 100 108Z" fill="#DC2626"/>
+              <!-- Ground with pile of orange leaves -->
+              <ellipse cx="80" cy="132" rx="70" ry="8" fill="#D97706"/>
+              <ellipse cx="80" cy="130" rx="55" ry="6" fill="#F59E0B"/>
+            </svg>
+            <span class="absolute top-2 left-2 px-2 py-0.5 bg-white/90 rounded-md text-[11px] font-bold text-amber-800 shadow-sm">ნახატი A</span>
+          </div>
+          <span class="font-bold text-slate-800 text-sm mt-3 mb-1.5">რას ხედავ ნახატზე?</span>
+          <select class="w-full text-xs p-2 rounded-lg border border-slate-300 bg-white font-medium focus:ring-2 focus:ring-indigo-500 shadow-sm">
+            <option value="">აირჩიე პასუხი...</option>
+            <option value="1">ოქროსფერი შემოდგომა</option>
+            <option value="2">ზამთრის თოვლი და ყინვა</option>
+            <option value="3">ცხელი ზაფხული</option>
+          </select>
+          <div class="answer-key hidden mt-2 text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded w-full">სწორია: ოქროსფერი შემოდგომა</div>
+        </div>
+
+        <!-- Card B: ბავშვი კითხულობს წიგნს -->
+        <div class="border-2 border-slate-200 hover:border-blue-400 rounded-2xl p-3.5 text-center bg-slate-50/70 hover:bg-blue-50/30 transition flex flex-col items-center">
+          <div class="w-full h-36 rounded-xl overflow-hidden bg-gradient-to-b from-blue-100 to-indigo-200 flex items-center justify-center border border-blue-300 shadow-inner relative">
+            <svg class="w-full h-full p-2" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Window background -->
+              <rect x="18" y="15" width="40" height="45" rx="4" fill="#BAE6FD" stroke="#38BDF8" stroke-width="2"/>
+              <line x1="38" y1="15" x2="38" y2="60" stroke="#38BDF8" stroke-width="2"/>
+              <line x1="18" y1="37" x2="58" y2="37" stroke="#38BDF8" stroke-width="2"/>
+              <!-- Desk -->
+              <rect x="20" y="105" width="120" height="10" rx="3" fill="#6366F1"/>
+              <!-- Student Body -->
+              <ellipse cx="90" cy="115" rx="26" ry="18" fill="#4338CA"/>
+              <!-- Student Head & Hair -->
+              <circle cx="90" cy="50" r="16" fill="#FCD34D"/>
+              <path d="M74 46C74 36 84 32 96 32C106 32 108 40 106 48C101 44 94 44 90 44C84 44 78 45 74 46Z" fill="#451A03"/>
+              <!-- Happy Face / Smile -->
+              <circle cx="85" cy="50" r="2" fill="#1E1B4B"/>
+              <circle cx="95" cy="50" r="2" fill="#1E1B4B"/>
+              <path d="M87 56C89 59 92 59 94 56" stroke="#B45309" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Open Colorful Book -->
+              <path d="M90 105C72 94 48 97 42 105V75C48 68 72 65 90 75V105Z" fill="#FFFFFF" stroke="#312E81" stroke-width="2"/>
+              <path d="M90 105C108 94 132 97 138 105V75C132 68 108 65 90 75V105Z" fill="#EEF2FF" stroke="#312E81" stroke-width="2"/>
+              <!-- Book text lines -->
+              <line x1="52" y1="78" x2="80" y2="78" stroke="#6366F1" stroke-width="2"/>
+              <line x1="52" y1="85" x2="76" y2="85" stroke="#6366F1" stroke-width="2"/>
+              <line x1="52" y1="92" x2="82" y2="92" stroke="#6366F1" stroke-width="2"/>
+              <line x1="98" y1="78" x2="126" y2="78" stroke="#6366F1" stroke-width="2"/>
+              <line x1="98" y1="85" x2="122" y2="85" stroke="#6366F1" stroke-width="2"/>
+              <line x1="98" y1="92" x2="128" y2="92" stroke="#6366F1" stroke-width="2"/>
+            </svg>
+            <span class="absolute top-2 left-2 px-2 py-0.5 bg-white/90 rounded-md text-[11px] font-bold text-blue-800 shadow-sm">ნახატი B</span>
+          </div>
+          <span class="font-bold text-slate-800 text-sm mt-3 mb-1.5">რას ხედავ ნახატზე?</span>
+          <select class="w-full text-xs p-2 rounded-lg border border-slate-300 bg-white font-medium focus:ring-2 focus:ring-indigo-500 shadow-sm">
+            <option value="">აირჩიე პასუხი...</option>
+            <option value="1">ბავშვი კითხულობს წიგნს</option>
+            <option value="2">ბავშვი თამაშობს ბურთს</option>
+            <option value="3">ბავშვი სადილობს</option>
+          </select>
+          <div class="answer-key hidden mt-2 text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded w-full">სწორია: ბავშვი კითხულობს წიგნს</div>
+        </div>
+
+        <!-- Card C: ერთგული მეგობრობა -->
+        <div class="border-2 border-slate-200 hover:border-emerald-400 rounded-2xl p-3.5 text-center bg-slate-50/70 hover:bg-emerald-50/30 transition flex flex-col items-center">
+          <div class="w-full h-36 rounded-xl overflow-hidden bg-gradient-to-b from-emerald-100 to-teal-200 flex items-center justify-center border border-emerald-300 shadow-inner relative">
+            <svg class="w-full h-full p-2" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Friendship Heart -->
+              <path d="M80 32C72 18 50 18 44 32C38 46 80 75 80 75C80 75 122 46 116 32C110 18 88 18 80 32Z" fill="#F43F5E" opacity="0.35"/>
+              <!-- Friend 1 (Girl) -->
+              <circle cx="56" cy="50" r="14" fill="#FCD34D"/>
+              <path d="M42 45C42 35 70 35 70 45C70 55 68 62 66 65H46C44 62 42 55 42 45Z" fill="#B45309" opacity="0.6"/>
+              <path d="M42 98C42 78 70 78 70 98" fill="#0EA5E9"/>
+              <!-- Friend 2 (Boy) -->
+              <circle cx="104" cy="50" r="14" fill="#FDE047"/>
+              <path d="M92 42C95 35 115 35 116 42C114 45 100 45 92 42Z" fill="#1E293B"/>
+              <path d="M90 98C90 78 118 78 118 98" fill="#10B981"/>
+              <!-- Arm around shoulder / Hug -->
+              <path d="M68 76C75 70 85 70 92 76" stroke="#F59E0B" stroke-width="4" stroke-linecap="round"/>
+              <!-- Joined Hands -->
+              <circle cx="80" cy="94" r="5" fill="#F59E0B"/>
+              <!-- Smiles -->
+              <path d="M52 53C54 56 58 56 60 53" stroke="#78350F" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M100 53C102 56 106 56 108 53" stroke="#78350F" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span class="absolute top-2 left-2 px-2 py-0.5 bg-white/90 rounded-md text-[11px] font-bold text-emerald-800 shadow-sm">ნახატი C</span>
+          </div>
+          <span class="font-bold text-slate-800 text-sm mt-3 mb-1.5">რას ხედავ ნახატზე?</span>
+          <select class="w-full text-xs p-2 rounded-lg border border-slate-300 bg-white font-medium focus:ring-2 focus:ring-indigo-500 shadow-sm">
+            <option value="">აირჩიე პასუხი...</option>
+            <option value="1">ერთგული მეგობრობა</option>
+            <option value="2">მარტო ყოფნა</option>
+            <option value="3">ჩხუბი და წყენა</option>
+          </select>
+          <div class="answer-key hidden mt-2 text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded w-full">სწორია: ერთგული მეგობრობა</div>
+        </div>
+
+        <!-- Card D: საქართველოს მთები და ბუნება -->
+        <div class="border-2 border-slate-200 hover:border-sky-400 rounded-2xl p-3.5 text-center bg-slate-50/70 hover:bg-sky-50/30 transition flex flex-col items-center">
+          <div class="w-full h-36 rounded-xl overflow-hidden bg-gradient-to-b from-sky-200 via-sky-100 to-emerald-200 flex items-center justify-center border border-sky-300 shadow-inner relative">
+            <svg class="w-full h-full p-1" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Bright Sun -->
+              <circle cx="135" cy="30" r="14" fill="#FBBF24"/>
+              <path d="M135 10V14 M135 46V50 M115 30H119 M151 30H155" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+              <!-- Birds -->
+              <path d="M30 30C33 26 36 30 39 26" stroke="#475569" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M45 35C48 31 51 35 54 31" stroke="#475569" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- High Snow-Capped Mountains -->
+              <polygon points="10,115 55,40 100,115" fill="#64748B"/>
+              <polygon points="55,40 70,62 40,62" fill="#FFFFFF"/>
+              <polygon points="65,115 110,48 155,115" fill="#475569"/>
+              <polygon points="110,48 122,66 98,66" fill="#FFFFFF"/>
+              <!-- Green Hills and Valley -->
+              <ellipse cx="80" cy="128" rx="85" ry="22" fill="#16A34A"/>
+              <ellipse cx="40" cy="122" rx="45" ry="14" fill="#22C55E"/>
+              <!-- Small Georgian Castle/Church silhouette -->
+              <rect x="36" y="98" width="10" height="12" fill="#334155"/>
+              <polygon points="34,98 41,88 48,98" fill="#DC2626"/>
+            </svg>
+            <span class="absolute top-2 left-2 px-2 py-0.5 bg-white/90 rounded-md text-[11px] font-bold text-sky-800 shadow-sm">ნახატი D</span>
+          </div>
+          <span class="font-bold text-slate-800 text-sm mt-3 mb-1.5">რას ხედავ ნახატზე?</span>
+          <select class="w-full text-xs p-2 rounded-lg border border-slate-300 bg-white font-medium focus:ring-2 focus:ring-indigo-500 shadow-sm">
+            <option value="">აირჩიე პასუხი...</option>
+            <option value="1">საქართველოს მთები და ბუნება</option>
+            <option value="2">ზღვის ღრმა წყალი</option>
+            <option value="3">ქალაქის ხმაურიანი ქუჩა</option>
+          </select>
+          <div class="answer-key hidden mt-2 text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded w-full">სწორია: საქართველოს მთები და ბუნება</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: ადაპტირებული ლიტერატურული ტექსტი და გააზრება -->
+    <section class="test-card bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-5">
+        <span class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm shadow-sm">2</span>
+        <div>
+          <h2 class="font-bold text-slate-900 text-lg sm:text-xl">ნაწილი II: ტექსტის გააზრება (ლიტერატურა) (6 ქულა)</h2>
+          <p class="text-xs sm:text-sm text-slate-500">წაიკითხე ადაპტირებული იგავ-არაკი, დააკვირდი ფოტოს და უპასუხე კითხვებს.</p>
+        </div>
+      </div>
+
+      <!-- Illustrated Story Box with Real Vivid Photo -->
+      <div class="bg-gradient-to-br from-amber-50/80 via-orange-50/40 to-yellow-50/60 border border-amber-200 rounded-2xl p-5 mb-6 shadow-sm">
+        <div class="flex flex-col md:flex-row gap-6 items-center">
+          
+          <!-- High-Definition Generated Story Image -->
+          <div class="w-full md:w-5/12 flex-shrink-0 text-center">
+            <div class="rounded-2xl overflow-hidden shadow-md border-2 border-amber-300/80 bg-white p-1">
+              <img src="images/fable_lion_mouse.jpg" alt="ლომი და პატარა თაგვი - იგავ-არაკის ილუსტრაცია" class="w-full h-56 sm:h-64 object-cover rounded-xl img-zoom">
+            </div>
+            <span class="inline-block text-[11px] font-semibold text-amber-900 mt-2 bg-amber-100/80 px-2.5 py-0.5 rounded-full">
+              🔍 ილუსტრაცია: თაგვი ეხმარება ბადეში გაბმულ ლომს
+            </span>
+          </div>
+
+          <!-- Story Text Content -->
+          <div class="w-full md:w-7/12 space-y-3 text-slate-800 text-sm leading-relaxed">
+            <div class="flex items-center justify-between border-b border-amber-200/80 pb-2">
+              <h3 class="text-lg font-extrabold text-amber-950 flex items-center gap-2">
+                <span>📖 ლომი და პატარა თაგვი</span>
+              </h3>
+              <span class="text-xs font-semibold px-2.5 py-1 bg-amber-200 text-amber-900 rounded-lg">იგავ-არაკი</span>
+            </div>
+
+            <p class="text-slate-700">
+              ერთ მზიან დღეს ტყეში დიდ ლომს ეძინა. პატარა თაგვმა სირბილის დროს შემთხვევით ლომს ცხვირზე გადაურბინა. ლომმა გაიღვიძა, გაბრაზდა და თაგვი დაიჭირა.
+            </p>
+            <p class="text-slate-700">
+              თაგვმა შეშინებულმა სთხოვა: <em>„გთხოვ, ნუ შემჭამ, გამიშვი! თუ გამიშვებ, მეც დაგეხმარები, როცა გაგიჭირდება“</em>. ლომს გაეცინა: <em>„შენ პატარა ხარ, მე კი ცხოველთა მეფე, როგორ დამეხმარები?“</em> მაგრამ შეიბრალა და გაუშვა.
+            </p>
+            <p class="text-slate-700">
+              გავიდა დრო. ლომი მონადირის ძლიერ <strong>ბადეში გაება</strong>. მან დაიწყო ხმამაღალი ღრიალი. ეს ხმა პატარა თაგვს შემოესმა. თაგვი სწრაფად მივიდა, ბასრი კბილებით <strong>გადაღრღნა</strong> ბადე და ლომი გადაარჩინა. ლომმა დიდი მადლობა გადაუხადა თავის პატარა მეგობარს.
+            </p>
+          </div>
+        </div>
+
+        <!-- Mini Glossary (Scaffolding for minority students) -->
+        <div class="mt-5 pt-3.5 border-t border-amber-200/80 grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-amber-950 font-medium">
+          <div class="bg-white/90 p-2.5 rounded-xl border border-amber-200 shadow-2xs">
+            <span class="font-bold text-amber-800">💡 შეიბრალა:</span> შეეცოდა, ცუდი არ გაუკეთა.
+          </div>
+          <div class="bg-white/90 p-2.5 rounded-xl border border-amber-200 shadow-2xs">
+            <span class="font-bold text-amber-800">💡 ბადეში გაება:</span> ხაფანგში ჩავარდა, დატყვევდა.
+          </div>
+          <div class="bg-white/90 p-2.5 rounded-xl border border-amber-200 shadow-2xs">
+            <span class="font-bold text-amber-800">💡 გადაღრღნა:</span> კბილებით გაჭრა, გაწყვიტა.
+          </div>
+        </div>
+      </div>
+
+      <!-- Comprehension Questions -->
+      <div class="space-y-4">
+        
+        <!-- Q1 -->
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/80">
+          <p class="font-bold text-sm sm:text-base text-slate-800 mb-2.5">1. რატომ გაეცინა ლომს, როცა თაგვმა დახმარება შესთავაზა?</p>
+          <div class="space-y-2 text-xs sm:text-sm">
+            <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-200/60 cursor-pointer transition">
+              <input type="radio" name="q1" value="a" class="w-4 h-4 text-indigo-600">
+              <span>ა) იმიტომ, რომ თაგვი ძალიან პატარა იყო და მისი დახმარება წარმოუდგენლად მიიჩნია.</span>
+            </label>
+            <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-200/60 cursor-pointer transition">
+              <input type="radio" name="q1" value="b" class="w-4 h-4 text-indigo-600">
+              <span>ბ) იმიტომ, რომ თაგვმა სასაცილო ანეკდოტი მოუყვა.</span>
+            </label>
+            <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-200/60 cursor-pointer transition">
+              <input type="radio" name="q1" value="c" class="w-4 h-4 text-indigo-600">
+              <span>გ) იმიტომ, რომ ლომს თაგვთან ერთად თამაში უნდოდა.</span>
+            </label>
+          </div>
+          <div class="answer-key hidden mt-2 text-xs font-bold text-emerald-600 bg-emerald-50 p-2 rounded">სწორი პასუხი: ა</div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/80">
+          <p class="font-bold text-sm sm:text-base text-slate-800 mb-2.5">2. როგორ გადაარჩინა თაგვმა ლომი? (დააკვირდი ნახატსაც)</p>
+          <div class="space-y-2 text-xs sm:text-sm">
+            <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-200/60 cursor-pointer transition">
+              <input type="radio" name="q2" value="a" class="w-4 h-4 text-indigo-600">
+              <span>ა) მონადირეები ტყიდან გააქცია.</span>
+            </label>
+            <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-200/60 cursor-pointer transition">
+              <input type="radio" name="q2" value="b" class="w-4 h-4 text-indigo-600">
+              <span>ბ) ბასრი კბილებით გადაღრღნა მონადირის ბადე.</span>
+            </label>
+            <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-200/60 cursor-pointer transition">
+              <input type="radio" name="q2" value="c" class="w-4 h-4 text-indigo-600">
+              <span>გ) სხვა დიდი ცხოველები მოიყვანა დასახმარებლად.</span>
+            </label>
+          </div>
+          <div class="answer-key hidden mt-2 text-xs font-bold text-emerald-600 bg-emerald-50 p-2 rounded">სწორი პასუხი: ბ</div>
+        </div>
+
+        <!-- Q3: Open Reflection -->
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/80">
+          <p class="font-bold text-sm sm:text-base text-slate-800 mb-1">3. რა არის ამ იგავ-არაკის მთავარი აზრი (მორალი)?</p>
+          <p class="text-xs text-slate-500 mb-2.5">დამხმარე კითხვა: რას გვასწავლის ეს მოთხრობა სიკეთესა და მეგობრობაზე?</p>
+          <textarea rows="2" placeholder="ჩემი აზრით, ეს იგავი გვასწავლის, რომ..." class="w-full text-xs sm:text-sm p-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white leading-relaxed"></textarea>
+          <div class="answer-key hidden mt-2 text-xs font-bold text-emerald-600 bg-emerald-50 p-2 rounded">ნიმუში: სიკეთე ყოველთვის ფასდება; პატარასაც შეუძლია დიდის დახმარება; მეგობრობაში ზომას მნიშვნელობა არ აქვს.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: გრამატიკა კონტექსტში (ვიზუალური მინიშნებებით) -->
+    <section class="test-card bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-5">
+        <span class="w-8 h-8 rounded-full bg-violet-100 text-violet-700 flex items-center justify-center font-bold text-sm shadow-sm">3</span>
+        <div>
+          <h2 class="font-bold text-slate-900 text-lg sm:text-xl">ნაწილი III: ენობრივი სავარჯიშოები (გრამატიკა) (5 ქულა)</h2>
+          <p class="text-xs sm:text-sm text-slate-500">ჩასვი სწორი თანდებული და ზმნა შინაარსისა და ლოგიკის მიხედვით.</p>
+        </div>
+      </div>
+
+      <div class="space-y-5 text-sm">
+        
+        <!-- Task A: თანდებულები -->
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/80">
+          <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+            <span>📍 სავარჯიშო A: ჩასვი სწორი თანდებული (-ში, -ზე, -თან)</span>
+          </h4>
+          <p class="text-xs text-slate-500 mb-3.5">დააკვირდი ფრჩხილებში მოცემულ ვარიანტებს და ჩაწერე სწორი ფორმა:</p>
+
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center gap-2 bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center text-xs font-bold">1</span>
+              <span>მოსწავლეები დილით შევიდნენ საკლასო</span>
+              <input type="text" placeholder="ოთახ..." class="w-24 p-1.5 text-center font-bold border-b-2 border-indigo-500 bg-indigo-50/50 rounded focus:outline-none text-xs sm:text-sm">
+              <span class="text-slate-500 text-xs sm:text-sm">(ოთახში / ოთახზე / ოთახთან).</span>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2 bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center text-xs font-bold">2</span>
+              <span>მასწავლებელმა წიგნი დადო</span>
+              <input type="text" placeholder="მაგიდ..." class="w-24 p-1.5 text-center font-bold border-b-2 border-indigo-500 bg-indigo-50/50 rounded focus:outline-none text-xs sm:text-sm">
+              <span class="text-slate-500 text-xs sm:text-sm">(მაგიდაში / მაგიდაზე / მაგიდასთან).</span>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2 bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+              <span class="w-6 h-6 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center text-xs font-bold">3</span>
+              <span>გაკვეთილის შემდეგ ანა მივიდა თავის</span>
+              <input type="text" placeholder="მეგობარ..." class="w-28 p-1.5 text-center font-bold border-b-2 border-indigo-500 bg-indigo-50/50 rounded focus:outline-none text-xs sm:text-sm">
+              <span class="text-slate-500 text-xs sm:text-sm">(მეგობარში / მეგობარზე / მეგობართან).</span>
+            </div>
+          </div>
+          <div class="answer-key hidden mt-2 text-xs font-bold text-emerald-600 bg-emerald-50 p-2 rounded">სწორი პასუხები: 1) ოთახში; 2) მაგიდაზე; 3) მეგობართან</div>
+        </div>
+
+        <!-- Task B: დროები და პირები -->
+        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/80">
+          <h4 class="font-bold text-slate-800 mb-2">
+            <span>⏱️ სავარჯიშო B: ვინ რას აკეთებს? (ჩასვი სწორი ზმნა)</span>
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-2">
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs">
+              <span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800 mb-1.5">დღეს (ახლა):</span>
+              <p class="text-sm">„მე ქართულ ენას ინტერესით <span class="font-bold text-indigo-600">[ვსწავლობ / ისწავლა / ვისწავლი]</span>.“</p>
+              <select class="mt-2.5 w-full text-xs p-2 border border-slate-300 rounded-lg bg-slate-50 font-medium">
+                <option value="">აირჩიე სწორი ფორმა...</option>
+                <option>ვსწავლობ</option>
+                <option>ისწავლა</option>
+                <option>ვისწავლი</option>
+              </select>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs">
+              <span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-purple-100 text-purple-800 mb-1.5">გუშინ (წარსულში):</span>
+              <p class="text-sm">„გუშინ ჩვენ ახალი მოთხრობა <span class="font-bold text-indigo-600">[წავიკითხეთ / ვკითხულობთ / წავიკითხავთ]</span>.“</p>
+              <select class="mt-2.5 w-full text-xs p-2 border border-slate-300 rounded-lg bg-slate-50 font-medium">
+                <option value="">აირჩიე სწორი ფორმა...</option>
+                <option>წავიკითხეთ</option>
+                <option>ვკითხულობთ</option>
+                <option>წავიკითხავთ</option>
+              </select>
+            </div>
+          </div>
+          <div class="answer-key hidden mt-2 text-xs font-bold text-emerald-600 bg-emerald-50 p-2 rounded">სწორი პასუხები: 1) ვსწავლობ; 2) წავიკითხეთ</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: შემოქმედებითი წერა (მკაფიო ფოტოთი და საყრდენებით) -->
+    <section class="test-card bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-5">
+        <span class="w-8 h-8 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm shadow-sm">4</span>
+        <div>
+          <h2 class="font-bold text-slate-900 text-lg sm:text-xl">ნაწილი IV: შემოქმედებითი წერა ფოტოს მიხედვით (5 ქულა)</h2>
+          <p class="text-xs sm:text-sm text-slate-500">დააკვირდი მკაფიო სურათს, გამოიყენე სიტყვების ბანკი და დაწერე 3-4 წინადადება.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+        
+        <!-- High-Definition Story Picture -->
+        <div class="md:col-span-5 bg-slate-50 rounded-2xl p-3 border-2 border-rose-200 text-center shadow-sm">
+          <div class="rounded-xl overflow-hidden border border-slate-200 bg-white">
+            <img src="images/school_friendship_help.jpg" alt="სკოლის ეზოში მეგობარი ეხმარება წიგნების აკრეფაში" class="w-full h-56 sm:h-64 object-cover img-zoom">
+          </div>
+          <p class="text-xs text-slate-700 mt-2.5 font-bold flex items-center justify-center gap-1">
+            <span>🤝</span> სურათი: მეგობარი ეხმარება წიგნების აკრეფაში
+          </p>
+          <p class="text-[11px] text-slate-500">დააკვირდი ბავშვების კეთილ სახეებსა და ქცევას.</p>
+        </div>
+
+        <!-- Word Bank & Scaffolded Writing Area -->
+        <div class="md:col-span-7 space-y-3.5">
+          
+          <!-- Word Bank (საყრდენი სიტყვები) -->
+          <div class="bg-indigo-50/80 border border-indigo-200 rounded-xl p-3.5 shadow-2xs">
+            <span class="text-xs font-extrabold text-indigo-950 block mb-2 flex items-center gap-1.5">
+              <span>🧰</span> სიტყვების ბანკი (შეგიძლია გამოიყენო ეს სიტყვები):
+            </span>
+            <div class="flex flex-wrap gap-1.5 text-xs">
+              <span class="px-2.5 py-1 bg-white rounded-lg text-indigo-700 font-semibold border border-indigo-200 shadow-2xs">სკოლა</span>
+              <span class="px-2.5 py-1 bg-white rounded-lg text-indigo-700 font-semibold border border-indigo-200 shadow-2xs">ეზო</span>
+              <span class="px-2.5 py-1 bg-white rounded-lg text-indigo-700 font-semibold border border-indigo-200 shadow-2xs">წიგნები</span>
+              <span class="px-2.5 py-1 bg-white rounded-lg text-indigo-700 font-semibold border border-indigo-200 shadow-2xs">დაეხმარა</span>
+              <span class="px-2.5 py-1 bg-white rounded-lg text-indigo-700 font-semibold border border-indigo-200 shadow-2xs">კეთილი</span>
+              <span class="px-2.5 py-1 bg-white rounded-lg text-indigo-700 font-semibold border border-indigo-200 shadow-2xs">ღიმილი</span>
+              <span class="px-2.5 py-1 bg-white rounded-lg text-indigo-700 font-semibold border border-indigo-200 shadow-2xs">ნამდვილი მეგობარი</span>
+            </div>
+          </div>
+
+          <!-- Sentence Starters (დამხმარე ჩარჩო-ფრაზები) -->
+          <div class="bg-emerald-50/80 border border-emerald-200 rounded-xl p-3.5 shadow-2xs">
+            <span class="text-xs font-extrabold text-emerald-950 block mb-1.5">
+              💬 დამხმარე ფრაზები წინადადებების დასაწყებად:
+            </span>
+            <ul class="text-xs text-emerald-900 space-y-1 list-disc list-inside font-medium">
+              <li>„სურათზე მე ვხედავ...“</li>
+              <li>„ერთ ბავშვს წიგნები დაუცვივდა და...“</li>
+              <li>„მისი მეგობარი მივიდა და...“</li>
+              <li>„ჩემი აზრით, მეგობრობა ნიშნავს...“</li>
+            </ul>
+          </div>
+
+          <!-- Writing Lines -->
+          <div>
+            <textarea rows="4" placeholder="დაწერე შენი მოკლე თხზულება აქ (3-4 წინადადება)..." class="w-full text-sm p-3.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rose-500 bg-white leading-relaxed shadow-inner"></textarea>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 5: მოსწავლის თვითშეფასება (ფსიქოლოგიური მხარდაჭერა) -->
+    <section class="test-card bg-white rounded-2xl shadow-sm border border-slate-200 p-6 no-print">
+      <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-5">
+        <span class="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm shadow-sm">5</span>
+        <div>
+          <h2 class="font-bold text-slate-900 text-lg sm:text-xl">ჩემი თვითშეფასება (როგორ ვიგრძენი თავი?)</h2>
+          <p class="text-xs sm:text-sm text-slate-500">შეაფასე შენი ნამუშევარი და აირჩიე შესაბამისი სმაილიკი:</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-center">
+        <label class="border-2 border-slate-200 hover:border-emerald-500 rounded-2xl p-4 cursor-pointer transition flex flex-col items-center bg-slate-50/80 hover:bg-emerald-50/30">
+          <input type="radio" name="self_eval" class="sr-only">
+          <span class="text-4xl mb-1.5">😊</span>
+          <span class="font-bold text-sm text-slate-900">ტესტი მარტივი იყო</span>
+          <span class="text-xs text-slate-500 mt-0.5">სურათები ძალიან დამეხმარა!</span>
+        </label>
+        <label class="border-2 border-slate-200 hover:border-amber-500 rounded-2xl p-4 cursor-pointer transition flex flex-col items-center bg-slate-50/80 hover:bg-amber-50/30">
+          <input type="radio" name="self_eval" class="sr-only">
+          <span class="text-4xl mb-1.5">🤔</span>
+          <span class="font-bold text-sm text-slate-900">ცოტა დავფიქრდი</span>
+          <span class="text-xs text-slate-500 mt-0.5">ზოგი რამ გამიჭირდა, მაგრამ ვცადე!</span>
+        </label>
+        <label class="border-2 border-slate-200 hover:border-indigo-500 rounded-2xl p-4 cursor-pointer transition flex flex-col items-center bg-slate-50/80 hover:bg-indigo-50/30">
+          <input type="radio" name="self_eval" class="sr-only">
+          <span class="text-4xl mb-1.5">💪</span>
+          <span class="font-bold text-sm text-slate-900">მომავალში უკეთ შევძლებ!</span>
+          <span class="text-xs text-slate-500 mt-0.5">ახალი ქართული სიტყვები ვისწავლე!</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- SECTION 6: მასწავლებლის განმავითარებელი უკუკავშირი -->
+    <section class="test-card bg-slate-50 rounded-2xl border-2 border-dashed border-slate-300 p-6">
+      <h3 class="font-bold text-slate-800 text-base mb-3 flex items-center gap-2">
+        <span>✍️ მასწავლებლის კომენტარი და განმავითარებელი უკუკავშირი:</span>
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs space-y-1.5">
+          <span class="font-bold text-emerald-700 block flex items-center gap-1.5">
+            <span>✨</span> რა გამოგივიდა ყველაზე კარგად:
+          </span>
+          <p class="text-slate-600 italic">„შესანიშნავად გაიაზრე იგავის აზრი, სწორად გამოიყენე ნახატების მინიშნებები და გამოხატე შენი აზრი მეგობრობაზე!“</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs space-y-1.5">
+          <span class="font-bold text-indigo-700 block flex items-center gap-1.5">
+            <span>🌱</span> რაზე გავამახვილოთ ყურადღება მომავალში:
+          </span>
+          <p class="text-slate-600 italic">„კიდევ უფრო გავამდიდროთ ლექსიკა და ერთად ვივარჯიშოთ თანდებულების სწორად გამოყენებაზე.“</p>
+        </div>
+      </div>
+      <div class="mt-4 pt-3.5 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs text-slate-600">
+        <span>ჯამური შეფასება: <strong>____ / 20 ქულა</strong></span>
+        <span>მასწავლებლის ხელმოწერა: _________________________</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-4xl mx-auto mt-8 mb-12 text-center text-xs text-slate-400 no-print">
+    შექმნილია საქართველოს არაქართულენოვანი სკოლების მოსწავლეთა მხარდასაჭერად • ქართული როგორც მეორე ენა (GSL)
+  </footer>
+
+  <script>
+    function toggleAnswers() {
+      const keys = document.querySelectorAll('.answer-key');
+      const btn = document.getElementById('ansBtn');
+      const isHidden = keys[0].classList.contains('hidden');
+      
+      keys.forEach(el => {
+        if (isHidden) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+      
+      btn.innerText = isHidden ? 'პასუხების დამალვა' : 'პასუხების ჩვენება';
+      btn.className = isHidden 
+        ? 'px-4 py-2.5 bg-emerald-100 hover:bg-emerald-200 text-emerald-900 rounded-xl text-sm font-semibold transition' 
+        : 'px-4 py-2.5 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-xl text-sm font-semibold transition';
+    }
+  </script>
+</body>
+</html>
